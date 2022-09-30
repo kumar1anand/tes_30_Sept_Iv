@@ -1,0 +1,418 @@
+1.) Solution: 
+
+using System;
+using System.Transactions;
+
+namespace Experiment_30_Sept
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            Console.WriteLine("Enter the size of array: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                int[] arr = new int[n];
+                Console.WriteLine("Enter array element");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = Convert.ToInt32(Console.ReadLine());
+                }
+                int max = arr[0];
+                int min = arr[0];
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    if (arr[i] > max)
+                    {
+                        max = arr[i];
+                    }
+                }
+                Console.WriteLine("Maximum value of array is: " + max);
+
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    if (arr[i] < min)
+                    {
+                        min = arr[i];
+                    }
+                }
+                Console.WriteLine("Minimum value of array is: " + min);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Please enter atleast-1 as size of array");
+            }
+        }
+    }
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+2.) Solution:
+
+namespace Exp_2
+{
+    internal class Program
+    {
+        class PhoneBook
+        {
+            string name;
+            int age;
+            int mobileNum;
+            string profession;
+        }
+        class Student : PhoneBook
+        {
+            public void show(string name, int age, int mobileNum)
+            {
+                Console.WriteLine("Students: ");
+                Console.WriteLine(name+ ", "+ age+" ,"+mobileNum);
+            }
+        }
+        class Services_Professionals:PhoneBook
+        {
+            public void show(string name, int age, string profession, int mobileNum)
+            {
+                Console.WriteLine("Services and Professionals:");
+                Console.WriteLine(name+" ,"+" ,"+age+" ,"+profession+", "+mobileNum);    
+            }
+        }
+        class Citizens : PhoneBook
+        {
+            public void show(string name, int age, int mobileNum)
+            {
+                Console.WriteLine("Citizens: ");
+                Console.WriteLine(name + ", "+age+" ,"+mobileNum);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Citizens citizens = new Citizens();
+            citizens.show("anand",12,22222);
+            Services_Professionals services = new Services_Professionals();
+            services.show("shivam", 12, "eng", 22333);
+            Student s = new Student();
+            s.show("prince", 23, 12222);
+        }
+    }
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+3.) Solution:
+
+namespace ConsoleApp23
+{
+    interface Vehicle
+    {
+        
+        void derive();
+        bool Refule(int a);
+    }
+    class Car : Vehicle
+    {
+        int fule;
+        
+        
+        public void derive()
+        {
+            if (fule > 0)
+            {
+                Console.WriteLine("the car is driving");
+            }
+        }
+        public bool Refule(int fule)
+        {
+            fule++;
+            return true;
+        }
+        static void Main(string[] args)
+        {
+            
+            Car car = new Car();
+            Console.WriteLine("Enter zero fule: ");
+            car.fule= Convert.ToInt32(Console.ReadLine());
+            car.derive();
+            Console.WriteLine("An amount of fuel(petrol/diesel) to refuel");
+            car.fule = Convert.ToInt32(Console.ReadLine());
+            car.derive();
+
+
+        }
+    }
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+4.) Solution:
+
+namespace Class_test_4
+{
+    abstract class Bird
+    {
+        protected string name;
+        public abstract string Name { 
+            get; 
+            set;
+        }
+        public abstract void fly();
+    }
+    internal class Crow:Bird
+    {
+        public override string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public override void fly()
+        {
+            Console.WriteLine("Crowing is flying");
+        }
+
+
+        static void Main(string[] args)
+        {
+            
+            Crow obj = new Crow();
+            Console.WriteLine("Enter bird name: ");
+            obj.name = Console.ReadLine();
+            Console.WriteLine("The bird is: "+obj.name);
+            obj.fly();
+        }
+    }
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+5.) Solution:
+namespace Experiment2_30_Sept
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            int res = 1;
+            Console.WriteLine("Enter the number: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Multiplication table is: ");
+            for(int i = 1; i <=10; i++)
+            {
+                Console.WriteLine("{0} X {1} ={2}", num, i, num * i);
+            }
+            for(int i=1; i <= num; i++)
+            {
+                res*=i;
+            }
+            Console.WriteLine("Factorial of the given number is:"+ res);
+        }
+    }
+}
+-----------------------------------------------------------------------
+----------------------------------------------------------------------
+6.) Solution:
+namespace exp_6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string data;
+
+            Console.WriteLine("Content Before copy: ");
+            data = File.ReadAllText("C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file1.txt");
+            Console.WriteLine("Content of source: " + data);
+
+            data = File.ReadAllText("C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file2.txt");
+            Console.WriteLine("Content of dest: "+data);
+
+            File.Copy("C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file1.txt", "C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file2.txt", true);
+
+            Console.WriteLine("Content After copy:\n");
+            data = File.ReadAllText("C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file2.txt");
+            Console.WriteLine("Content of source: " + data);
+
+            data = File.ReadAllText("C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment\\file2.txt");
+            Console.WriteLine("Content of dest: " + data);
+
+
+            string fileName = @"C:\Users\anand.kumar\OneDrive - Entain Group\Documents\DA_Assignment\\file2.txt";
+            File.Encrypt(fileName);
+        }
+    }
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+7.)Solution:
+namespace Exp_7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            Queue<KeyValuePair<string, int>> queue = new Queue<KeyValuePair<string , int>>();
+            int i = 1;
+            while(i <= 5){
+                Console.WriteLine("Enter the name of people: ");
+                string name=Console.ReadLine();
+                Console.WriteLine("Enter the age of people: ");
+                int age= Convert.ToInt32(Console.ReadLine());
+                queue.Enqueue(new KeyValuePair<string, int>(name,age));
+                i++;
+            }
+            Console.WriteLine(" result of the queue");
+            foreach (KeyValuePair<string, int> pair in queue)
+            {
+                //Console.WriteLine(pair.Key+ " "+ pair.Value);
+                Console.WriteLine(pair.ToString());
+            }
+
+        }
+    }
+}
+---------------------------
+----------------------------
+8.)
+using System.IO;
+
+namespace Exp_8
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the name of the file: ");
+            string fileName = Console.ReadLine();
+            string str = "C:\\Users\\anand.kumar\\OneDrive - Entain Group\\Documents\\DA_Assignment" + fileName + ".txt";
+            FileStream fs1 = new FileStream(str, FileMode.Create);
+            FileStream fs2 = new FileStream(str, FileMode.Open);
+            StreamWriter sw = new StreamWriter(fs2);
+            Console.WriteLine("Add atleast 10 lines of content to the file");
+            string s = Console.ReadLine();
+            sw.WriteLine(s);
+            Console.WriteLine("Enter the old word: ");
+            string Old = Console.ReadLine();
+            Console.WriteLine("Enter the new word:");
+            string New = Console.ReadLine();
+           
+            string text = File.ReadAllText(str);
+            text = text.Replace(Old, New);
+            File.WriteAllText(str, text);
+            fs1.Close();
+            fs2.Close();
+
+        }
+    }
+}
+
+
+-------------------------------------
+9.) Create a C# program to:
+Create an Employee class and add about 5 employees. Write a method to give promotion. 
+Get a value from the user as a trigger to give promotion to selected employees. Use Delegates
+
+Solution:
+
+using System.ComponentModel;
+
+namespace Exp_9
+{
+    internal class Employee
+    {
+        public delegate void Cal(Dictionary<string,int> d);
+       
+
+        public void promotion(Dictionary<string,int> p)
+        {
+
+           
+            Console.WriteLine("Enter the age above which we have to give promotion");
+            int age=Convert.ToInt32(Console.ReadLine());
+            foreach(var d in p)
+            {
+                if(d.Value > age)
+                {
+                    Console.Write(d.Key+" : ");
+                    Console.WriteLine("Give promotion");
+                }
+            }
+        }
+       
+        static void Main(string[] args)
+        {
+            
+            Employee e = new Employee();
+            Cal obj = new Cal(e.promotion);
+            Dictionary<string,int> d = new Dictionary<string,int>();
+            int i = 1;
+            try
+            {
+                Console.WriteLine("Enter the number of employee: ");
+                int num = Convert.ToInt32(Console.ReadLine());
+                while (i <= num)
+                {
+                    Console.WriteLine("Enter the name of people: ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("Enter the age of people: ");
+                    int age = Convert.ToInt32(Console.ReadLine());
+                    d.Add(name, age);
+                    i++;
+                }
+
+
+                e.promotion(d);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Please enter correct value");
+            }
+
+        }
+    }
+}
+
+--------------------
+10.)Solution
+
+namespace Exp_10
+{
+    internal class Program
+    {
+        
+        static void Flower_decorations()
+        {
+            Console.WriteLine("Flower decorations over");
+            
+        }
+        static async void Chief_guest()
+        {
+            await Task.Delay(9000);
+            Console.WriteLine("Chief guest has arrived at the venue. ");
+        }
+        static async void Coordinate_with_the_caterers()
+        {
+            await Task.Delay(7000);
+            Console.WriteLine("Coordinate with caterers");
+        }
+        static void gifts_to_be_distributed()
+        {
+            Console.WriteLine("Gift to be distributed ");
+        }
+        static async Task Main(string[] args)
+        {           
+
+            Flower_decorations();
+            Chief_guest();
+            Coordinate_with_the_caterers(); 
+            gifts_to_be_distributed();
+
+            Console.ReadKey();
+        }
+    }
+}
